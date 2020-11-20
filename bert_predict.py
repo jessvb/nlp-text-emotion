@@ -19,20 +19,10 @@ input_path = os.path.join('input',input_text)
 output_name = input_text.split('.')[0]
 ################################################################################
 
-
-class_names = ['joy', 'sadness', 'fear', 'anger', 'neutral']
-
-encoding = {
-    'joy': 0,
-    'sadness': 1,
-    'fear': 2,
-    'anger': 3,
-    'neutral': 4
-}
-
 # #### Testing with other inputs
 predictor = ktrain.load_predictor('models/bert_model')
 predictor.get_classes()
+# The classes are 'joy', 'sadness', 'fear', 'anger', 'neutral'
 
 # Read in the entire text
 f = open(input_path, 'r')
