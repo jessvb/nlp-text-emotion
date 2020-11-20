@@ -1,0 +1,2 @@
+ktrain==0.25.0
+tensorflow==2.3.1
