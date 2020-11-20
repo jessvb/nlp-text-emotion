@@ -1,52 +1,16 @@
-# Emotion Classification in Short Messages
+# NLP Text Emotion Recognition
+*Detect emotion sentence-by-sentence in local text files!* This repository was mirrored from [lukasgarbas/nlp-text-emotion](https://github.com/lukasgarbas/nlp-text-emotion). (Note that a fork would have been preferable to a mirror, but [LFS does not support pushing objects to public forks](https://github.com/git-lfs/git-lfs/issues/1906), so a mirror had to do.)
 
-Multi-class sentiment analysis problem to classify texts into five emotion categories: joy, sadness, anger, fear, neutral. A fun weekend project to go through different text classification techniques. This includes dataset preparation, traditional machine learning with scikit-learn, LSTM neural networks and transfer learning using BERT (tensorflow keras).
+## Usage
+1. Clone the project locally
+2. In the project root, create an `input` folder and an `output` folder
+3. Place a `.txt` file containing sentences/paragraphs (that you'd like to use emotion recognition on) into the `input` directory
+    - Note: Each sentence should be delimited by `.` or `!` (as in regular English)
+4. Open `bert_predict.py` and change the `input_text` variable contents to be the name of your `.txt` file
+5. In a terminal, `cd` into the project root
+6. Run `pip install -r requirements.txt`
+7. Run `python bert_predict.py` to use the pre-trained BERT NLP model to recognize emotions in each sentence
+8. View the output `.csv` files with the recognized emotions (per sentence) in the `output` directory
 
-# Datasets
-
-**Summary Table**
-
-|     Dataset    | Year |  Content  |     Size     | Emotion categories | Balanced |
-| :--------------: | :--: | :-------: | ------------ | ------------------ | :-------: |
-|dailydialog| 2017 | dialogues |102k sentences|neutral, joy, surprise, sadness, anger, disgust, fear| No |
-|emotion-stimulus|2015|dialogues|2.5k sentences|sadness, joy, anger, fear, surprise, disgust| No |
-|isear|1990|emotional situations|7.5k sentences|joy, fear, anger, sadness, disgust, shame, guilt| Yes |
-
-links: [dailydialog](http://yanran.li/dailydialog.html), [emotion-stimulus](http://www.site.uottawa.ca/~diana/resources/emotion_stimulus_data), [isear](http://www.affective-sciences.org/index.php/download_file/view/395/296/)
-
-
-## Combined dataset
-
-Dataset was combined from dailydialog, isear, and emotion-stimulus to create a balanced dataset with 5 labels: joy, sad, anger, fear, and neutral. The texts mainly consist of short messages and dialog utterances.
-
-# Experiments
-
-### Traditional Machine Learning:
-* Data preprocessing: noise and punctuation removal, tokenization, stemming
-* Text Representation: TF-IDF
-* Classifiers: Naive Bayes, Random Forrest, Logistic Regrassion, SVM
-
-| Approach            | F1-Score |
-| :------------------ | :------: |
-| Naive Bayes         | 0.6702   |
-| Random Forrest      | 0.6372   |
-| Logistic Regression | 0.6935   | 
-| SVM                 | 0.7271   | 
-
-### Neural Networks
-* Data preprocessing: noise and punctuation removal, tokenization
-* Word Embeddings: pretrained 300 dimensional word2vec ([link](https://fasttext.cc/docs/en/english-vectors.html))
-* Deep Network: LSTM, biLSTM, CNN 
-
-| Approach            | F1-Score |
-| :------------------ | :------: |
-| LSTM + w2v_wiki     | 0.7395   |
-| biLSTM + w2v_wiki   | 0.7414   |
-| CNN + w2v_wiki      | 0.7580   |
-
-### Transfer learning with BERT
-Finetuning BERT for text classification
-
-| Approach            | F1-Score |
-| :------------------ | :------: |
-| finetuned BERT      | 0.8320   |
+## Train your own model
+If you'd like to train your own model, see the `bert_init.py` file.
