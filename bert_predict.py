@@ -14,8 +14,8 @@ from ktrain import text
 
 ################################################################################
 ########### Change these depending on what you name the transcripts ############
-input_text = 'transcript.txt' # TODO read from file
-input_path = os.path.join('input',input_text) # TODO read from file
+input_text = 'transcript.txt'
+input_path = os.path.join('input',input_text)
 output_name = input_text.split('.')[0]
 ################################################################################
 
@@ -34,14 +34,10 @@ encoding = {
 predictor = ktrain.load_predictor('models/bert_model')
 predictor.get_classes()
 
-# Alllll the sentiments:
-messages = """I was walking through the forest. It was dark. Something was in 
-the shadows. As I looked to the left, I felt something slimy wrapping around 
-my ankle. I jumped! It was only my dog giving me a generous lick. I love my 
-dog! There's nothing better than sweet surprise doggo kisses. Although the last 
-time this happened was on a dark day. I had been crying. And throwing books.
- I failed a test. But that's okay! It just gave me another opportunity to 
- try again :) """
+# Read in the entire text
+f = open(input_path, 'r')
+messages = f.read()
+f.close()
 
 messages_list = re.split('[\.!]', messages)
 sentiments = []
